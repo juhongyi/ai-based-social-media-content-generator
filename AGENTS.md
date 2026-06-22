@@ -1,0 +1,2 @@
+- Project workspaces: Notion [ai based social media content generator](https://www.notion.so/my-ws/ai-based-social-media-content-generator-387608ae2c7f803b9ac5cabdc97f283d?source=copy_link); Make https://us2.make.com/organization/7946490/dashboard.
+- Access requirements: use [@notion](plugin://notion@openai-curated-remote) for Notion and [@chrome](plugin://chrome@openai-bundled) for Make.
