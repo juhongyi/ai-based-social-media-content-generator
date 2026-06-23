@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PRD | AI 기반 소셜 미디어 콘텐츠 자동 생성</title>
+  <title>PRD | AI 기반 소셜 미디어 컨텐츠 자동 생성</title>
   <style>
     :root {
       --bg: #f7f9fc;
@@ -279,8 +279,7 @@
       margin-top: 12px;
     }
 
-    .tag,
-    .status {
+    .tag {
       display: inline-flex;
       align-items: center;
       border-radius: 999px;
@@ -411,44 +410,6 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.55;
-    }
-
-    .status-line {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .status {
-      min-height: 30px;
-      padding: 5px 10px;
-      color: var(--ink);
-    }
-
-    .status.requested {
-      border-color: #b8d4ff;
-      background: var(--blue-soft);
-      color: #174ea6;
-    }
-
-    .status.running {
-      border-color: #efd58b;
-      background: var(--amber-soft);
-      color: var(--amber);
-    }
-
-    .status.done {
-      border-color: #b9dfc8;
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .status.partial {
-      border-color: #ffd0cc;
-      background: var(--red-soft);
-      color: var(--red);
     }
 
     .platform-card {
@@ -645,16 +606,17 @@
   <div class="page">
     <header>
       <p class="eyebrow">Product Requirements Document</p>
-      <h1>AI 기반 소셜 미디어 콘텐츠 자동 생성</h1>
+      <h1>AI 기반 소셜 미디어 컨텐츠 자동 생성</h1>
       <p class="lead">
-        하나의 주제와 선택 키워드를 입력하면 Make와 Notion을 중심으로 Instagram, 네이버 블로그,
-        Threads용 콘텐츠와 대표 이미지를 자동 생성하고 Notion 초안으로 정리하는 노코드 자동화 시스템이다.
+        공개 Notion 폼에서 주제/키워드와 메세지 톤을 제출하면<br>
+        Make가 Responses row를 감지해 컨텐츠 브리프, 플랫폼별 컨텐츠, 대표 이미지를 생성하고<br>
+        Notion Form DB에 정리하는 노코드 자동화 시스템이다.
       </p>
       <div class="meta-grid" aria-label="문서 메타 정보">
         <div class="meta-card"><span>프로젝트</span><strong>Project C</strong></div>
         <div class="meta-card"><span>문서 유형</span><strong>팀 실행용 PRD</strong></div>
         <div class="meta-card"><span>구현 방식</span><strong>Make + Notion</strong></div>
-        <div class="meta-card"><span>범위</span><strong>초안 자동 저장</strong></div>
+        <div class="meta-card"><span>범위</span><strong>Form DB 자동 저장</strong></div>
       </div>
     </header>
 
@@ -666,7 +628,7 @@
         <li><a href="#workflow">워크플로우</a></li>
         <li><a href="#notion">Notion 구조</a></li>
         <li><a href="#rules">생성 규칙</a></li>
-        <li><a href="#ab-test">A/B 테스트</a></li>
+        <li><a href="#comparison">수동 비교 분석</a></li>
         <li><a href="#deliverables">산출물</a></li>
         <li><a href="#acceptance">인수조건</a></li>
         <li><a href="#constraints">제약·리스크</a></li>
@@ -681,28 +643,31 @@
             <h2>미션 요약</h2>
           </div>
           <p class="section-summary">
-            반복적인 멀티채널 콘텐츠 변환 작업을 자동화하여<br>
+            반복적인 멀티채널 컨텐츠 변환 작업을 자동화하여<br>
             팀이 기획, 검수, 캠페인 개선에 더 많은 시간을 쓰도록 한다.
           </p>
         </div>
         <div class="grid-3">
           <article class="panel accent">
             <h3>입력</h3>
-            <p>Notion 단일 DB에 <code>주제</code>를 필수로 입력하고 <code>키워드</code>는 선택 입력한다.</p>
+            <p>공개 Notion Form DB에서 <code>주제/키워드</code>와 <code>메세지 톤</code>을 입력한다.</p>
           </article>
           <article class="panel accent">
             <h3>생성</h3>
-            <p>Make AI Toolkit으로 플랫폼별 텍스트를 만들고 Cloudflare Workers AI HTTP 엔드포인트로 대표 이미지를 생성한다.</p>
+            <p>
+              Make AI Toolkit으로 컨텐츠 브리프를 먼저 만들고,
+              선택한 톤 기준으로 플랫폼별 텍스트와 대표 이미지를 생성한다.
+            </p>
           </article>
           <article class="panel accent">
             <h3>저장</h3>
-            <p>생성 결과는 자동 게시하지 않고 Notion 페이지 본문과 첨부 파일로 저장한다.</p>
+            <p>컨텐츠 브리프, 플랫폼별 컨텐츠, 이미지는 Form 응답 row 속성에 저장한다.</p>
           </article>
         </div>
         <div class="tag-row" aria-label="핵심 범위">
           <span class="tag blue">노코드 자동화</span>
-          <span class="tag blue">Notion 초안 저장</span>
-          <span class="tag green">A/B 톤 생성</span>
+          <span class="tag blue">Notion Form DB</span>
+          <span class="tag green">선택 톤 생성</span>
           <span class="tag green">공통 대표 이미지 1장</span>
           <span class="tag amber">자동 게시 제외</span>
           <span class="tag amber">자동 품질 검수 제외</span>
@@ -733,9 +698,12 @@
           <article class="panel">
             <h3>해결 방향</h3>
             <ul>
-              <li>Notion DB를 콘텐츠 요청과 결과 저장의 단일 작업 공간으로 사용한다.</li>
-              <li>Make가 상태값을 감지해 텍스트 생성, 이미지 생성, 파일 변환, Notion 저장을 순차 실행한다.</li>
-              <li>A/B 톤 결과를 한 페이지에서 비교해 팀이 수동으로 최종 판단한다.</li>
+              <li>Notion Form DB를 컨텐츠 요청과 결과 저장의 단일 작업 공간으로 사용한다.</li>
+              <li>
+                Make가 Responses 뷰의 신규 row를 감지해
+                컨텐츠 브리프, 플랫폼별 컨텐츠, 이미지 생성을 순차 실행한다.
+              </li>
+              <li>동일 주제/키워드를 톤별로 따로 제출한 결과를 팀이 수동 비교해 결론을 정리한다.</li>
               <li>자동 게시를 제외해 저작권, 브랜드, 플랫폼 정책 리스크를 낮춘다.</li>
             </ul>
           </article>
@@ -756,7 +724,10 @@
         <div class="grid-4">
           <article class="panel soft">
             <h3>워크플로우 설명 가능</h3>
-            <p>하나의 주제가 플랫폼별 콘텐츠로 변환되고 Notion에 저장되는 흐름을 팀원이 설명할 수 있다.</p>
+            <p>
+              하나의 주제/키워드가 컨텐츠 브리프와 플랫폼별 컨텐츠로 변환되고
+              Notion에 저장되는 흐름을 팀원이 설명할 수 있다.
+            </p>
           </article>
           <article class="panel soft">
             <h3>텍스트+이미지 자동화</h3>
@@ -764,11 +735,11 @@
           </article>
           <article class="panel soft">
             <h3>플랫폼별 포맷 반영</h3>
-            <p>분량, 태그, 문체, 제목 구조 등 플랫폼별 콘텐츠 요구사항을 프롬프트 설계에 반영한다.</p>
+            <p>분량, 태그, 문체, 제목 구조 등 플랫폼별 컨텐츠 요구사항을 프롬프트 설계에 반영한다.</p>
           </article>
           <article class="panel soft">
             <h3>결과 중앙화</h3>
-            <p>생성 결과, 오류, A/B 평가를 Notion 단일 DB와 페이지 본문에서 확인한다.</p>
+            <p>컨텐츠 브리프, 플랫폼별 컨텐츠, 이미지 결과를 Notion Form DB row 속성에서 확인한다.</p>
           </article>
         </div>
       </section>
@@ -780,51 +751,58 @@
             <h2>자동화 워크플로우</h2>
           </div>
           <p class="section-summary">
-            상태값 변경 자체가 외부 게시를 수행하지 않는다.<br>
-            사용자가 Status를 생성요청으로 변경하면 Make 실행의 트리거가 되고, 결과는 Notion 초안으로 저장된다.
+            폼 제출은 외부 게시를 수행하지 않는다.<br>
+            Responses 뷰에 row가 추가되면 Make가 자동 감지하고 결과는 같은 row 속성에 저장된다.
           </p>
         </div>
         <div class="flow" aria-label="자동화 흐름">
           <article class="flow-step">
-            <h3>Notion 입력</h3>
-            <p>사용자가 단일 DB에 주제와 선택 키워드를 입력하고 Status를 생성요청으로 직접 변경한다.</p>
+            <h3>공개 폼 제출</h3>
+            <p>사용자가 <code>주제/키워드</code>와 <code>메세지 톤</code>을 입력해 공개 Notion 폼을 제출한다.</p>
           </article>
           <article class="flow-step">
-            <h3>Make 감지</h3>
-            <p>Make가 생성요청 상태의 행을 감지하고 Status를 생성중으로 변경한 뒤 시나리오를 시작한다.</p>
+            <h3>Responses row 감지</h3>
+            <p>
+              Form DB의 Responses 뷰에 응답 row가 추가되면
+              Make가 자동으로 감지해 시나리오를 시작한다.
+            </p>
           </article>
           <article class="flow-step">
-            <h3>텍스트 생성</h3>
-            <p>Make AI Toolkit이 Instagram, 네이버 블로그, Threads 결과를 친근함과 전문적 톤으로 생성한다.</p>
+            <h3>컨텐츠 브리프 생성</h3>
+            <p>
+              Make AI Toolkit이 주제/키워드와 선택 톤을 기반으로
+              플랫폼별 생성에 참고할 컨텐츠 브리프를 만든다.
+            </p>
           </article>
           <article class="flow-step">
-            <h3>이미지 생성</h3>
-            <p>Cloudflare Workers AI HTTP 엔드포인트가 1:1 대표 이미지를 Base64 응답으로 반환한다.</p>
+            <h3>플랫폼별 컨텐츠 생성</h3>
+            <p>
+              컨텐츠 브리프를 레퍼런스로 인스타그램, 네이버 블로그,
+              스레드 컨텐츠를 선택 톤 기준으로 생성한다.
+            </p>
           </article>
           <article class="flow-step">
-            <h3>파일 변환</h3>
-            <p>Make가 Base64 값을 이미지 파일로 변환하고 Notion 페이지 첨부에 사용할 수 있는 형태로 준비한다.</p>
+            <h3>텍스트 결과 저장</h3>
+            <p>컨텐츠 브리프와 플랫폼별 컨텐츠를 이미지 생성 전 응답 row 속성에 먼저 저장한다.</p>
           </article>
           <article class="flow-step">
-            <h3>본문 저장</h3>
-            <p>플랫폼별 A/B 결과와 이미지 첨부를 같은 Notion 페이지 본문에 섹션으로 저장한다.</p>
+            <h3>이미지 생성/첨부 시도</h3>
+            <p>
+              Cloudflare Workers AI로 1:1 이미지를 생성하고,
+              성공 시 Base64 값을 파일로 변환해 이미지 속성에 첨부한다.
+            </p>
           </article>
           <article class="flow-step">
-            <h3>상태 업데이트</h3>
-            <p>모든 단계가 성공하면 완료, 이미지 단계만 실패하면 부분완료와 오류 메시지를 기록한다.</p>
+            <h3>이미지 실패 처리</h3>
+            <p>
+              이미지 생성이 실패하면 Make가 3회 재시도하고,
+              최종 실패 시 이미지 속성은 빈 값으로 둔 채 완료로 간주한다.
+            </p>
           </article>
           <article class="flow-step">
             <h3>팀 수동 확인</h3>
-            <p>담당자가 Notion 페이지와 Make 실행 화면을 직접 확인하고 A/B 평가와 결론을 작성한다.</p>
+            <p>담당자가 Notion 결과와 Make 콘솔을 확인하고 필요시 별도 비교 분석 페이지에 결론을 정리한다.</p>
           </article>
-        </div>
-        <div class="status-line" aria-label="상태값">
-          <span class="status">대기</span>
-          <span class="status requested">생성요청</span>
-          <span class="status running">생성중</span>
-          <span class="status done">완료</span>
-          <span class="status partial">부분완료</span>
-          <span class="status partial">실패</span>
         </div>
       </section>
 
@@ -835,8 +813,8 @@
             <h2>Notion DB 구조</h2>
           </div>
           <p class="section-summary">
-            단일 DB를 사용하되 긴 결과물은 속성이 아니라<br>
-            페이지 본문에 저장해 가독성과 관리성을 유지한다.
+            공개 폼 응답 row를 요청과 산출물의 기준 단위로 사용한다.<br>
+            Make가 생성한 브리프, 플랫폼별 컨텐츠, 이미지는 같은 row 속성에 저장한다.
           </p>
         </div>
         <table>
@@ -849,31 +827,32 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>주제</td><td>Title</td><td>필수</td><td>콘텐츠 생성의 중심 주제. 주제만 있어도 실행 가능해야 한다.</td></tr>
-            <tr><td>키워드</td><td>Text</td><td>선택</td><td>SEO, 해시태그, 본문 맥락에 반영할 보조 키워드 목록.</td></tr>
-            <tr><td>Status</td><td>Select</td><td>필수</td><td><code>대기</code>, <code>생성요청</code>, <code>생성중</code>, <code>부분완료</code>, <code>완료</code>, <code>실패</code>.</td></tr>
-            <tr><td>대표 이미지</td><td>Files</td><td>자동 입력</td><td>Make가 Base64 이미지를 파일로 변환해 첨부한다.</td></tr>
-            <tr><td>A/B 평가 결과</td><td>Text</td><td>수동 입력</td><td>팀원이 친근함 또는 전문적 콘텐츠안 중 우수안과 판단 이유를 자유롭게 기록한다.</td></tr>
-            <tr><td>오류 메시지</td><td>Text</td><td>자동 입력</td><td>부분완료 또는 실패 시 실패 단계와 원인을 기록한다.</td></tr>
-            <tr><td>실행 시각</td><td>Date</td><td>자동 입력</td><td>Make 시나리오가 실행을 시작하거나 완료한 시각.</td></tr>
+            <tr><td>주제/키워드</td><td>Title</td><td>폼 필수</td><td>컨텐츠 생성의 중심 입력. 주제와 키워드를 별개 필드로 분리하지 않는다.</td></tr>
+            <tr><td>메세지 톤</td><td>Select</td><td>폼 필수</td><td><code>친근함</code> 또는 <code>전문적</code> 중 하나를 선택한다.</td></tr>
+            <tr><td>컨텐츠 브리프</td><td>Text</td><td>자동 입력</td><td>플랫폼별 컨텐츠 생성을 위한 레퍼런스. 플랫폼별 컨텐츠보다 먼저 저장한다.</td></tr>
+            <tr><td>인스타그램</td><td>Text</td><td>자동 입력</td><td>선택한 메세지 톤 기준의 Instagram 캡션과 해시태그.</td></tr>
+            <tr><td>네이버 블로그</td><td>Text</td><td>자동 입력</td><td>선택한 메세지 톤 기준의 블로그 제목, 소제목, 본문.</td></tr>
+            <tr><td>스레드</td><td>Text</td><td>자동 입력</td><td>선택한 메세지 톤 기준의 Threads 단일 게시글.</td></tr>
+            <tr><td>이미지</td><td>Files</td><td>자동 입력</td><td>이미지 생성 성공 시 파일을 첨부한다. 3회 재시도 후 실패하면 빈 값을 허용한다.</td></tr>
           </tbody>
         </table>
         <div class="grid-2" style="margin-top: 14px;">
           <article class="panel soft">
-            <h3>페이지 본문 구성</h3>
+            <h3>Responses 뷰 기준</h3>
             <ol>
-              <li>프로젝트 개요</li>
-              <li>입력값 요약</li>
-              <li>A안: 친근함</li>
-              <li>B안: 전문적</li>
-              <li>대표 이미지</li>
-              <li>A/B 수동 평가</li>
-              <li>프롬프트 수정 기록</li>
+              <li>공개 폼 제출 시 응답 row 생성</li>
+              <li>Make가 신규 row를 자동 감지</li>
+              <li>컨텐츠 브리프를 row 속성에 저장</li>
+              <li>플랫폼별 컨텐츠를 row 속성에 저장</li>
+              <li>이미지 생성 성공 시 이미지 속성에 첨부</li>
             </ol>
           </article>
           <article class="panel soft">
-            <h3>부분완료 기준</h3>
-            <p>텍스트 생성과 Notion 본문 저장은 성공했지만 이미지 생성, Base64 변환, Notion 첨부 중 하나가 실패한 경우 텍스트 결과를 유지하고 Status를 <code>부분완료</code>로 기록한다.</p>
+            <h3>이미지 실패 기준</h3>
+            <p>
+              이미지 생성만 실패한 경우 Make에서 3회 재시도한다.
+              최종 실패해도 브리프와 플랫폼별 컨텐츠는 유지하며, 이미지 속성은 빈 값으로 둘 수 있다.
+            </p>
           </article>
         </div>
       </section>
@@ -895,31 +874,35 @@
             <div class="metric"><strong>형식</strong><span>짧은 캡션 + 해시태그</span></div>
             <div class="metric"><strong>분량</strong><span>캡션 50-100자</span></div>
             <div class="metric"><strong>태그</strong><span>해시태그 최대 5개</span></div>
-            <div class="metric"><strong>톤</strong><span>친근함, 전문적 두 톤</span></div>
+            <div class="metric"><strong>톤</strong><span>폼에서 선택한 메세지 톤 적용</span></div>
           </article>
           <article class="panel platform-card">
             <h3>네이버 블로그</h3>
             <div class="metric"><strong>형식</strong><span>제목 + 소제목 + 본문</span></div>
             <div class="metric"><strong>분량</strong><span>본문 500자 이상</span></div>
-            <div class="metric"><strong>키워드</strong><span>선택 키워드를 자연스럽게 반영</span></div>
-            <div class="metric"><strong>톤</strong><span>검색형 문맥과 읽기 쉬운 문장</span></div>
+            <div class="metric"><strong>주제/키워드</strong><span>본문 맥락과 검색형 문맥에 자연스럽게 반영</span></div>
+            <div class="metric"><strong>톤</strong><span>선택 톤을 유지하되 읽기 쉬운 문장 사용</span></div>
           </article>
           <article class="panel platform-card">
             <h3>Threads</h3>
             <div class="metric"><strong>형식</strong><span>단일 게시글</span></div>
             <div class="metric"><strong>분량</strong><span>500자 이내</span></div>
             <div class="metric"><strong>태그</strong><span>태그 1개 기준</span></div>
-            <div class="metric"><strong>톤</strong><span>대화형 문장, 핵심 메시지 우선</span></div>
+            <div class="metric"><strong>톤</strong><span>선택 톤을 유지하되 핵심 메시지 우선</span></div>
           </article>
         </div>
         <div class="grid-2" style="margin-top: 14px;">
           <article class="panel success">
             <h3>대표 이미지 요구사항</h3>
             <ul>
-              <li>콘텐츠 주제를 시각적으로 설명하는 공통 대표 이미지 1장 생성.</li>
+              <li>컨텐츠 브리프와 주제/키워드를 시각적으로 설명하는 공통 대표 이미지 1장 생성.</li>
               <li>기본 비율은 1:1, 기준 크기는 1080px.</li>
               <li>실제 게시 전 사람이 저작권, 브랜드 적합성, 민감 요소를 검토한다.</li>
-              <li>결과는 Base64 응답을 Make에서 파일로 변환한 뒤 Notion에 첨부한다.</li>
+              <li>결과는 Base64 응답을 Make에서 파일로 변환한 뒤 이미지 속성에 첨부한다.</li>
+              <li>
+                이미지 생성 실패 시 Make에서 3회 재시도하며,
+                최종 실패 시 이미지 속성은 빈 값으로 둘 수 있다.
+              </li>
             </ul>
           </article>
           <article class="panel warning">
@@ -934,21 +917,24 @@
         </div>
       </section>
 
-      <section id="ab-test">
+      <section id="comparison">
         <div class="section-head">
           <div>
-            <p class="section-kicker">Bonus</p>
-            <h2>A/B 테스트</h2>
+            <p class="section-kicker">Manual Analysis</p>
+            <h2>수동 비교 분석</h2>
           </div>
           <p class="section-summary">
-            보너스 과제 범위에 포함하되 자동 성과 예측은 하지 않는다.<br>
-            두 톤의 결과를 생성하고 팀이 수동으로 비교한다.
+            친근함과 전문적 결과를 한 번에 자동 생성하지 않는다.<br>
+            동일 주제/키워드를 톤만 다르게 각각 제출하고 사람이 결과를 비교한다.
           </p>
         </div>
         <div class="tone-compare">
           <article class="panel">
-            <h3>A안: 친근함</h3>
-            <p>말을 건네는 듯한 문장, 쉬운 표현, 공감형 메시지를 사용한다. Instagram과 Threads에서 참여 유도에 적합하다.</p>
+            <h3>친근함 제출</h3>
+            <p>
+              말을 건네는 듯한 문장, 쉬운 표현, 공감형 메시지를 사용한다.
+              Instagram과 Threads에서 참여 유도에 적합하다.
+            </p>
             <div class="tag-row">
               <span class="tag green">대화형</span>
               <span class="tag green">공감</span>
@@ -956,8 +942,11 @@
             </div>
           </article>
           <article class="panel">
-            <h3>B안: 전문적</h3>
-            <p>근거와 구조가 분명한 문장, 정보형 제목, 명확한 요약을 사용한다. 네이버 블로그와 B2B 문맥에 적합하다.</p>
+            <h3>전문적 제출</h3>
+            <p>
+              근거와 구조가 분명한 문장, 정보형 제목, 명확한 요약을 사용한다.
+              네이버 블로그와 B2B 문맥에 적합하다.
+            </p>
             <div class="tag-row">
               <span class="tag blue">정보형</span>
               <span class="tag blue">신뢰감</span>
@@ -966,13 +955,17 @@
           </article>
         </div>
         <div class="panel soft" style="margin-top: 14px;">
-          <h3>수동 평가 기준</h3>
-          <p>팀원은 Notion 페이지에서 두 톤의 결과를 읽고 플랫폼별 적합성과 실제 활용 가능성을 평가한다.</p>
+          <h3>분석 방식</h3>
+          <p>
+            동일한 <code>주제/키워드</code>를 메세지 톤만 다르게 각각 폼 제출한 뒤,
+            사용자는 결과물을 수동 비교해 플랫폼, 주제 등 변수별로
+            효과적인 컨텐츠 결론을 별도 Notion 페이지에 정리한다.
+          </p>
           <div class="score-grid">
             <div class="score"><strong>채널 적합성</strong><span>플랫폼 문법과 사용 맥락에 맞는가</span></div>
-            <div class="score"><strong>명확성</strong><span>핵심 메시지가 빠르게 이해되는가</span></div>
-            <div class="score"><strong>CTA</strong><span>사용자 행동 유도가 자연스러운가</span></div>
-            <div class="score"><strong>브랜드 안전성</strong><span>과장, 저작권, 민감 표현 리스크가 낮은가</span></div>
+            <div class="score"><strong>주제 적합성</strong><span>주제/키워드 의도가 잘 살아나는가</span></div>
+            <div class="score"><strong>톤 효과</strong><span>친근함 또는 전문적 톤이 목적에 맞는가</span></div>
+            <div class="score"><strong>활용 결론</strong><span>어떤 조건에서 어떤 컨텐츠가 효과적인가</span></div>
           </div>
         </div>
       </section>
@@ -985,7 +978,7 @@
           </div>
           <p class="section-summary">
             제출물은 자동화 구조, 플랫폼별 결과물,<br>
-            프롬프트 설계 기록을 모두 포함해야 한다.
+            수동 비교 분석과 프롬프트 설계 기록을 모두 포함해야 한다.
           </p>
         </div>
         <table>
@@ -997,9 +990,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>자동화 워크플로우</td><td>Make 시나리오, 단계별 역할, 연결 구조 설명</td><td>주제 입력부터 Notion 저장까지 실행 흐름이 설명 가능</td></tr>
-            <tr><td>플랫폼별 콘텐츠 결과물</td><td>Instagram, 네이버 블로그, Threads 텍스트와 대표 이미지 1장</td><td>A/B 톤별 결과가 Notion 페이지 본문에 정리됨</td></tr>
-            <tr><td>협업 도구 페이지</td><td>프로젝트 개요, 콘텐츠 생성 요청 DB, 결과물</td><td>Notion 단일 DB와 페이지에서 확인 가능</td></tr>
+            <tr><td>자동화 워크플로우</td><td>Make 시나리오, 단계별 역할, 연결 구조 설명</td><td>폼 제출부터 Notion row 저장까지 실행 흐름이 설명 가능</td></tr>
+            <tr><td>플랫폼별 컨텐츠 결과물</td><td>컨텐츠 브리프, 인스타그램, 네이버 블로그, 스레드 텍스트와 대표 이미지 1장</td><td>선택한 메세지 톤 기준 결과가 Form 응답 row 속성에 정리됨</td></tr>
+            <tr><td>협업 도구 페이지</td><td>프로젝트 개요, 공개 Form DB, Responses 뷰, 결과물</td><td>Notion Form DB와 Responses 뷰에서 확인 가능</td></tr>
+            <tr><td>수동 비교 분석 페이지</td><td>동일 주제/키워드의 톤별 제출 결과 비교, 플랫폼/주제 변수별 결론</td><td>효과적인 컨텐츠 형식과 톤에 대한 사람이 작성한 결론이 남아 있음</td></tr>
             <tr><td>프롬프트 템플릿 문서</td><td>플랫폼별 설계 기준, 초안→수정→최종 기록</td><td>변경 사유와 최종 적용 기준이 남아 있음</td></tr>
           </tbody>
         </table>
@@ -1025,11 +1019,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>AC-01</td><td>Notion에서 <code>주제</code>만 입력한 뒤 사용자가 <code>Status = 생성요청</code>으로 직접 변경하면 Make 실행이 시작되어야 한다.</td><td>담당자가 Notion 행의 상태값과 Make 실행 화면을 직접 확인한다.</td></tr>
-            <tr><td>AC-02</td><td><code>주제 + 키워드</code> 입력 후 실행하면 Instagram, 네이버 블로그, Threads 결과가 A/B 톤별로 같은 Notion 페이지 본문에 저장되어야 한다.</td><td>담당자가 Notion 페이지 본문에서 플랫폼별 섹션과 A/B 섹션을 직접 확인한다.</td></tr>
-            <tr><td>AC-03</td><td>Cloudflare Workers AI의 Base64 이미지 응답은 Make에서 파일로 변환되어 Notion 페이지 첨부로 표시되어야 한다.</td><td>담당자가 Make의 파일 변환 단계와 Notion 첨부 영역을 직접 확인한다.</td></tr>
-            <tr><td>AC-04</td><td>이미지 단계가 실패해도 생성된 텍스트 결과는 유지되고, 상태는 <code>부분완료</code>, 오류 메시지는 이미지 단계 실패 사유로 기록되어야 한다.</td><td>담당자가 실패 케이스 실행 후 Notion의 텍스트 결과, 상태값, 오류 메시지를 직접 확인한다.</td></tr>
-            <tr><td>AC-05</td><td>인수조건 검증은 별도 증거 파일이나 캡처 저장 없이 사람이 매뉴얼하게 확인한다.</td><td>담당자가 Notion 페이지와 Make 실행 화면을 보고 통과 여부를 판단한다.</td></tr>
+            <tr><td>AC-01</td><td>공개 Notion 폼에서 <code>주제/키워드</code>와 <code>메세지 톤</code>을 제출하면 Responses 뷰에 row가 생성되고 Make 실행이 시작되어야 한다.</td><td>담당자가 Responses 뷰의 신규 row와 Make 실행 화면을 직접 확인한다.</td></tr>
+            <tr><td>AC-02</td><td>Make는 플랫폼별 컨텐츠 생성 전에 <code>컨텐츠 브리프</code>를 생성해 같은 row 속성에 저장해야 한다.</td><td>담당자가 Form 응답 row의 컨텐츠 브리프 속성을 직접 확인한다.</td></tr>
+            <tr><td>AC-03</td><td><code>인스타그램</code>, <code>네이버 블로그</code>, <code>스레드</code> 속성에는 폼에서 선택한 메세지 톤 기준의 컨텐츠가 저장되어야 한다.</td><td>담당자가 각 플랫폼 속성의 톤과 출력 형식을 직접 확인한다.</td></tr>
+            <tr><td>AC-04</td><td>이미지 생성이 성공하면 <code>이미지</code> 속성에 파일이 첨부되고, 3회 재시도 후에도 실패하면 이미지 속성은 빈 값이어도 완료로 간주한다.</td><td>담당자가 이미지 속성과 Make 콘솔 실행 이력을 직접 확인한다.</td></tr>
+            <tr><td>AC-05</td><td>동일한 <code>주제/키워드</code>를 메세지 톤만 다르게 각각 제출한 결과를 수동 비교하고, 결론은 별도 Notion 페이지에 정리할 수 있어야 한다.</td><td>담당자가 톤별 응답 row와 별도 비교 분석 페이지를 직접 확인한다.</td></tr>
+            <tr><td>AC-06</td><td>인수조건 검증은 별도 증거 파일이나 캡처 저장 없이 사람이 매뉴얼하게 확인한다.</td><td>담당자가 Notion 페이지와 Make 실행 화면을 보고 통과 여부를 판단한다.</td></tr>
           </tbody>
         </table>
       </section>
@@ -1049,9 +1044,9 @@
           <article class="panel danger">
             <h3>금지 사항</h3>
             <ul>
-              <li>저작권 문제가 있는 콘텐츠를 실제 소셜 미디어에 무단 게시하지 않는다.</li>
-              <li>타인의 콘텐츠를 복사해 제출하지 않는다.</li>
-              <li>AI 생성 결과를 사람 검토 없이 브랜드 공식 콘텐츠로 사용하지 않는다.</li>
+              <li>저작권 문제가 있는 컨텐츠를 실제 소셜 미디어에 무단 게시하지 않는다.</li>
+              <li>타인의 컨텐츠를 복사해 제출하지 않는다.</li>
+              <li>AI 생성 결과를 사람 검토 없이 브랜드 공식 컨텐츠로 사용하지 않는다.</li>
             </ul>
           </article>
           <article class="panel warning">
