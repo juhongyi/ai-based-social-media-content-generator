@@ -608,8 +608,9 @@
       <p class="eyebrow">Product Requirements Document</p>
       <h1>AI 기반 소셜 미디어 컨텐츠 자동 생성</h1>
       <p class="lead">
-        공개 Notion 폼에서 주제/키워드와 메세지 톤을 제출하면 Make가 Responses row를 감지해
-        컨텐츠 브리프, 플랫폼별 컨텐츠, 대표 이미지를 생성하고 Notion Form DB에 정리하는 노코드 자동화 시스템이다.
+        공개 Notion 폼에서 주제/키워드와 메세지 톤을 제출하면
+        Make가 Responses row를 감지해 컨텐츠 브리프, 플랫폼별 컨텐츠, 대표 이미지를 생성하고
+        Notion Form DB에 정리하는 노코드 자동화 시스템이다.
       </p>
       <div class="meta-grid" aria-label="문서 메타 정보">
         <div class="meta-card"><span>프로젝트</span><strong>Project C</strong></div>
@@ -653,7 +654,10 @@
           </article>
           <article class="panel accent">
             <h3>생성</h3>
-            <p>Make AI Toolkit으로 컨텐츠 브리프를 먼저 만들고, 선택한 톤 기준으로 플랫폼별 텍스트와 대표 이미지를 생성한다.</p>
+            <p>
+              Make AI Toolkit으로 컨텐츠 브리프를 먼저 만들고,
+              선택한 톤 기준으로 플랫폼별 텍스트와 대표 이미지를 생성한다.
+            </p>
           </article>
           <article class="panel accent">
             <h3>저장</h3>
@@ -695,7 +699,10 @@
             <h3>해결 방향</h3>
             <ul>
               <li>Notion Form DB를 컨텐츠 요청과 결과 저장의 단일 작업 공간으로 사용한다.</li>
-              <li>Make가 Responses 뷰의 신규 row를 감지해 컨텐츠 브리프, 플랫폼별 컨텐츠, 이미지 생성을 순차 실행한다.</li>
+              <li>
+                Make가 Responses 뷰의 신규 row를 감지해
+                컨텐츠 브리프, 플랫폼별 컨텐츠, 이미지 생성을 순차 실행한다.
+              </li>
               <li>동일 주제/키워드를 톤별로 따로 제출한 결과를 팀이 수동 비교해 결론을 정리한다.</li>
               <li>자동 게시를 제외해 저작권, 브랜드, 플랫폼 정책 리스크를 낮춘다.</li>
             </ul>
@@ -717,7 +724,10 @@
         <div class="grid-4">
           <article class="panel soft">
             <h3>워크플로우 설명 가능</h3>
-            <p>하나의 주제/키워드가 컨텐츠 브리프와 플랫폼별 컨텐츠로 변환되고 Notion에 저장되는 흐름을 팀원이 설명할 수 있다.</p>
+            <p>
+              하나의 주제/키워드가 컨텐츠 브리프와 플랫폼별 컨텐츠로 변환되고
+              Notion에 저장되는 흐름을 팀원이 설명할 수 있다.
+            </p>
           </article>
           <article class="panel soft">
             <h3>텍스트+이미지 자동화</h3>
@@ -752,15 +762,24 @@
           </article>
           <article class="flow-step">
             <h3>Responses row 감지</h3>
-            <p>Form DB의 Responses 뷰에 응답 row가 추가되면 Make가 자동으로 감지해 시나리오를 시작한다.</p>
+            <p>
+              Form DB의 Responses 뷰에 응답 row가 추가되면
+              Make가 자동으로 감지해 시나리오를 시작한다.
+            </p>
           </article>
           <article class="flow-step">
             <h3>컨텐츠 브리프 생성</h3>
-            <p>Make AI Toolkit이 주제/키워드와 선택 톤을 기반으로 플랫폼별 생성에 참고할 컨텐츠 브리프를 만든다.</p>
+            <p>
+              Make AI Toolkit이 주제/키워드와 선택 톤을 기반으로
+              플랫폼별 생성에 참고할 컨텐츠 브리프를 만든다.
+            </p>
           </article>
           <article class="flow-step">
             <h3>플랫폼별 컨텐츠 생성</h3>
-            <p>컨텐츠 브리프를 레퍼런스로 인스타그램, 네이버 블로그, 스레드 컨텐츠를 선택 톤 기준으로 생성한다.</p>
+            <p>
+              컨텐츠 브리프를 레퍼런스로 인스타그램, 네이버 블로그,
+              스레드 컨텐츠를 선택 톤 기준으로 생성한다.
+            </p>
           </article>
           <article class="flow-step">
             <h3>텍스트 결과 저장</h3>
@@ -768,11 +787,17 @@
           </article>
           <article class="flow-step">
             <h3>이미지 생성/첨부 시도</h3>
-            <p>Cloudflare Workers AI로 1:1 이미지를 생성하고, 성공 시 Base64 값을 파일로 변환해 이미지 속성에 첨부한다.</p>
+            <p>
+              Cloudflare Workers AI로 1:1 이미지를 생성하고,
+              성공 시 Base64 값을 파일로 변환해 이미지 속성에 첨부한다.
+            </p>
           </article>
           <article class="flow-step">
             <h3>이미지 실패 처리</h3>
-            <p>이미지 생성이 실패하면 Make가 3회 재시도하고, 최종 실패 시 이미지 속성은 빈 값으로 둔 채 완료로 간주한다.</p>
+            <p>
+              이미지 생성이 실패하면 Make가 3회 재시도하고,
+              최종 실패 시 이미지 속성은 빈 값으로 둔 채 완료로 간주한다.
+            </p>
           </article>
           <article class="flow-step">
             <h3>팀 수동 확인</h3>
@@ -824,7 +849,10 @@
           </article>
           <article class="panel soft">
             <h3>이미지 실패 기준</h3>
-            <p>이미지 생성만 실패한 경우 Make에서 3회 재시도한다. 최종 실패해도 브리프와 플랫폼별 컨텐츠는 유지하며, 이미지 속성은 빈 값으로 둘 수 있다.</p>
+            <p>
+              이미지 생성만 실패한 경우 Make에서 3회 재시도한다.
+              최종 실패해도 브리프와 플랫폼별 컨텐츠는 유지하며, 이미지 속성은 빈 값으로 둘 수 있다.
+            </p>
           </article>
         </div>
       </section>
@@ -871,7 +899,10 @@
               <li>기본 비율은 1:1, 기준 크기는 1080px.</li>
               <li>실제 게시 전 사람이 저작권, 브랜드 적합성, 민감 요소를 검토한다.</li>
               <li>결과는 Base64 응답을 Make에서 파일로 변환한 뒤 이미지 속성에 첨부한다.</li>
-              <li>이미지 생성 실패 시 Make에서 3회 재시도하며, 최종 실패 시 이미지 속성은 빈 값으로 둘 수 있다.</li>
+              <li>
+                이미지 생성 실패 시 Make에서 3회 재시도하며,
+                최종 실패 시 이미지 속성은 빈 값으로 둘 수 있다.
+              </li>
             </ul>
           </article>
           <article class="panel warning">
@@ -900,7 +931,10 @@
         <div class="tone-compare">
           <article class="panel">
             <h3>친근함 제출</h3>
-            <p>말을 건네는 듯한 문장, 쉬운 표현, 공감형 메시지를 사용한다. Instagram과 Threads에서 참여 유도에 적합하다.</p>
+            <p>
+              말을 건네는 듯한 문장, 쉬운 표현, 공감형 메시지를 사용한다.
+              Instagram과 Threads에서 참여 유도에 적합하다.
+            </p>
             <div class="tag-row">
               <span class="tag green">대화형</span>
               <span class="tag green">공감</span>
@@ -909,7 +943,10 @@
           </article>
           <article class="panel">
             <h3>전문적 제출</h3>
-            <p>근거와 구조가 분명한 문장, 정보형 제목, 명확한 요약을 사용한다. 네이버 블로그와 B2B 문맥에 적합하다.</p>
+            <p>
+              근거와 구조가 분명한 문장, 정보형 제목, 명확한 요약을 사용한다.
+              네이버 블로그와 B2B 문맥에 적합하다.
+            </p>
             <div class="tag-row">
               <span class="tag blue">정보형</span>
               <span class="tag blue">신뢰감</span>
@@ -919,7 +956,11 @@
         </div>
         <div class="panel soft" style="margin-top: 14px;">
           <h3>분석 방식</h3>
-          <p>동일한 <code>주제/키워드</code>를 메세지 톤만 다르게 각각 폼 제출한 뒤, 사용자는 결과물을 수동 비교해 플랫폼, 주제 등 변수별로 효과적인 컨텐츠 결론을 별도 Notion 페이지에 정리한다.</p>
+          <p>
+            동일한 <code>주제/키워드</code>를 메세지 톤만 다르게 각각 폼 제출한 뒤,
+            사용자는 결과물을 수동 비교해 플랫폼, 주제 등 변수별로
+            효과적인 컨텐츠 결론을 별도 Notion 페이지에 정리한다.
+          </p>
           <div class="score-grid">
             <div class="score"><strong>채널 적합성</strong><span>플랫폼 문법과 사용 맥락에 맞는가</span></div>
             <div class="score"><strong>주제 적합성</strong><span>주제/키워드 의도가 잘 살아나는가</span></div>
