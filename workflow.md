@@ -73,5 +73,3 @@
 3. 응답으로 받은 base64 이미지를 PNG 바이너리로 변환한다.
 4. Cloudinary에 `notion_{{Notion 페이지 ID}}` 형식의 public ID로 업로드한다.
 5. 업로드된 `secure_url`을 Notion 페이지에 외부 이미지 블록과 링크 문단으로 추가한다.
-
-`workflow.json`에는 Cloudflare 계정 ID와 API 토큰이 템플릿 값으로 들어 있으므로, 실제 실행 환경에서는 해당 값이 유효한 값으로 설정되어 있어야 한다.
