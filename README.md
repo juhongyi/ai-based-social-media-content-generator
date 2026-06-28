@@ -12,7 +12,7 @@
 ├── LICENSE # 프로젝트 라이선스 문서
 ├── PRD.html # AI 기반 소셜 미디어 콘텐츠 자동 생성 PRD
 ├── workflow.md # Make와 Notion 기반 자동화 흐름 설명 문서
-├── workflow.json # Make 시나리오 가져오기에 사용하는 워크플로우 템플릿
+├── workflow.json # Make 시나리오 가져오기에 사용하는 워크플로우 블루프린트
 └── prompts/ # 플랫폼별 콘텐츠 생성 프롬프트 문서 모음
     ├── content-brief-generation.md # 플랫폼별 생성의 기준이 되는 콘텐츠 브리프 프롬프트
     ├── instagram-caption-friendly-generation.md # 친근한 톤의 Instagram 캡션 생성 프롬프트
