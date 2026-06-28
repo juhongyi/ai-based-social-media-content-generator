@@ -783,7 +783,7 @@
           </article>
           <article class="flow-step">
             <h3>텍스트 결과 저장</h3>
-            <p>컨텐츠 브리프와 플랫폼별 컨텐츠를 응답 페이지 본문 heading 아래 JSON 코드 블록으로 작성한다.</p>
+            <p>컨텐츠 브리프와 플랫폼별 컨텐츠를 응답 페이지 본문에 heading과 JSON 코드 블록으로 작성한다.</p>
           </article>
           <article class="flow-step">
             <h3>이미지 생성/첨부 시도</h3>
@@ -834,12 +834,12 @@
         </table>
         <div class="grid-2" style="margin-top: 14px;">
           <article class="panel soft">
-            <h3>본문 템플릿 기준</h3>
+            <h3>본문 결과 섹션 기준</h3>
             <ol>
-              <li><code>## 컨텐츠 브리프</code> 아래에 브리프 JSON 코드 블록 작성</li>
-              <li><code>## 인스타그램</code> 아래에 Instagram 결과 JSON 코드 블록 작성</li>
-              <li><code>## 네이버 블로그</code> 아래에 네이버 블로그 결과 JSON 코드 블록 작성</li>
-              <li><code>## 스레드</code> 아래에 Threads 결과 JSON 코드 블록 작성</li>
+              <li><code>## 컨텐츠 브리프</code> 섹션에 브리프 JSON 코드 블록 작성</li>
+              <li><code>## 인스타그램</code> 섹션에 Instagram 결과 JSON 코드 블록 작성</li>
+              <li><code>## 네이버 블로그</code> 섹션에 네이버 블로그 결과 JSON 코드 블록 작성</li>
+              <li><code>## 스레드</code> 섹션에 Threads 결과 JSON 코드 블록 작성</li>
             </ol>
           </article>
           <article class="panel soft">
@@ -986,7 +986,7 @@
           </thead>
           <tbody>
             <tr><td>자동화 워크플로우</td><td>Make 시나리오, 단계별 역할, 연결 구조 설명</td><td>폼 제출부터 Notion 응답 페이지 정리까지 실행 흐름이 설명 가능</td></tr>
-            <tr><td>플랫폼별 컨텐츠 결과물</td><td>컨텐츠 브리프, 인스타그램, 네이버 블로그, 스레드 텍스트와 대표 이미지 1장</td><td>선택한 메세지 톤 기준 텍스트가 응답 페이지 본문 heading 아래 JSON 코드 블록으로 정리됨</td></tr>
+            <tr><td>플랫폼별 컨텐츠 결과물</td><td>컨텐츠 브리프, 인스타그램, 네이버 블로그, 스레드 텍스트와 대표 이미지 1장</td><td>선택한 메세지 톤 기준 텍스트가 응답 페이지 본문 heading 섹션의 JSON 코드 블록으로 정리됨</td></tr>
             <tr><td>협업 도구 페이지</td><td>프로젝트 개요, 공개 Form DB, Responses 뷰, 결과물</td><td>Notion Form DB와 Responses 뷰에서 확인 가능</td></tr>
             <tr><td>수동 비교 분석 페이지</td><td>동일 주제/키워드의 톤별 제출 결과 비교, 플랫폼/주제 변수별 결론</td><td>효과적인 컨텐츠 형식과 톤에 대한 사람이 작성한 결론이 남아 있음</td></tr>
             <tr><td>프롬프트 템플릿 문서</td><td>플랫폼별 설계 기준, 초안→수정→최종 기록</td><td>변경 사유와 최종 적용 기준이 남아 있음</td></tr>
@@ -1015,8 +1015,8 @@
           </thead>
           <tbody>
             <tr><td>AC-01</td><td>공개 Notion 폼에서 <code>주제/키워드</code>와 <code>메세지 톤</code>을 제출하면 Responses 뷰에 row가 생성되고 Make 실행이 시작되어야 한다.</td><td>담당자가 Responses 뷰의 신규 row와 Make 실행 화면을 직접 확인한다.</td></tr>
-            <tr><td>AC-02</td><td>Make는 플랫폼별 컨텐츠 생성 전에 <code>컨텐츠 브리프</code>를 생성해 응답 페이지 본문 <code>## 컨텐츠 브리프</code> heading 아래 JSON 코드 블록으로 작성해야 한다.</td><td>담당자가 Form 응답 페이지 본문의 컨텐츠 브리프 섹션을 직접 확인한다.</td></tr>
-            <tr><td>AC-03</td><td><code>## 인스타그램</code>, <code>## 네이버 블로그</code>, <code>## 스레드</code> heading 아래에는 폼에서 선택한 메세지 톤 기준의 컨텐츠 JSON 코드 블록이 작성되어야 한다.</td><td>담당자가 각 플랫폼 본문 섹션의 톤과 출력 형식을 직접 확인한다.</td></tr>
+            <tr><td>AC-02</td><td>Make는 플랫폼별 컨텐츠 생성 전에 <code>컨텐츠 브리프</code>를 생성해 응답 페이지 본문 <code>## 컨텐츠 브리프</code> 섹션의 JSON 코드 블록으로 작성해야 한다.</td><td>담당자가 Form 응답 페이지 본문의 컨텐츠 브리프 섹션을 직접 확인한다.</td></tr>
+            <tr><td>AC-03</td><td><code>## 인스타그램</code>, <code>## 네이버 블로그</code>, <code>## 스레드</code> 섹션에는 폼에서 선택한 메세지 톤 기준의 컨텐츠 JSON 코드 블록이 작성되어야 한다.</td><td>담당자가 각 플랫폼 본문 섹션의 톤과 출력 형식을 직접 확인한다.</td></tr>
             <tr><td>AC-04</td><td>이미지 생성이 성공하면 <code>이미지</code> 속성에 파일이 첨부되고, 3회 재시도 후에도 실패하면 이미지 속성은 빈 값이어도 완료로 간주한다.</td><td>담당자가 이미지 속성과 Make 콘솔 실행 이력을 직접 확인한다.</td></tr>
             <tr><td>AC-05</td><td>동일한 <code>주제/키워드</code>를 메세지 톤만 다르게 각각 제출한 결과를 수동 비교하고, 결론은 별도 Notion 페이지에 정리할 수 있어야 한다.</td><td>담당자가 톤별 응답 row와 별도 비교 분석 페이지를 직접 확인한다.</td></tr>
             <tr><td>AC-06</td><td>인수조건 검증은 별도 증거 파일이나 캡처 저장 없이 사람이 매뉴얼하게 확인한다.</td><td>담당자가 Notion 페이지와 Make 실행 화면을 보고 통과 여부를 판단한다.</td></tr>
